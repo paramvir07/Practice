@@ -1,0 +1,49 @@
+import java.util.*;
+
+class ProcessRR {
+    int pid, arrivalTime, burstTime, remainingTime;
+
+    ProcessRR(int pid, int arrivalTime, int burstTime) {
+        this.pid = pid;
+        this.arrivalTime = arrivalTime;
+        this.burstTime = burstTime;
+        this.remainingTime = burstTime;
+    }
+}
+
+public class RoundRobin {
+    public static void main(String[] args) {
+        List<ProcessRR> processes = Arrays.asList(
+                new ProcessRR(1, 0, 4),
+                new ProcessRR(2, 1, 3),
+                new ProcessRR(3, 2, 1),
+                new ProcessRR(4, 3, 2)
+        );
+        int timeQuantum = 2;
+
+        Queue<ProcessRR> queue = new LinkedList<>();
+        queue.addAll(processes);
+
+        int currentTime = 0;
+
+        while (!queue.isEmpty()) {
+            ProcessRR currentProcess = queue.poll();
+
+            if (currentProcess.arrivalTime > currentTime) {
+                currentTime = currentProcess.arrivalTime;
+            }
+
+            System.out.println("Process " + currentProcess.pid + " starts at " + currentTime);
+
+            if (currentProcess.remainingTime > timeQuantum) {
+                currentTime += timeQuantum;
+                currentProcess.remainingTime -= timeQuantum;
+                queue.add(currentProcess);
+            } else {
+                currentTime += currentProcess.remainingTime;
+                currentProcess.remainingTime = 0;
+                System.out.println("Process " + currentProcess.pid + " finishes at " + currentTime);
+            }
+        }
+    }
+}
