@@ -1,0 +1,49 @@
+import java.util.*;
+
+class ProcessPriorityNP {
+    int pid, arrivalTime, burstTime, priority;
+
+    ProcessPriorityNP(int pid, int arrivalTime, int burstTime, int priority) {
+        this.pid = pid;
+        this.arrivalTime = arrivalTime;
+        this.burstTime = burstTime;
+        this.priority = priority;
+    }
+}
+
+public class PrioritySchedulingNonPreemptive {
+    public static void main(String[] args) {
+        List<ProcessPriorityNP> processes = new ArrayList<>(Arrays.asList(
+                new ProcessPriorityNP(1, 0, 4, 2),
+                new ProcessPriorityNP(2, 1, 3, 1),
+                new ProcessPriorityNP(3, 2, 1, 3),
+                new ProcessPriorityNP(4, 3, 2, 2)
+        ));
+
+        processes.sort(Comparator.comparingInt(p -> p.arrivalTime));
+
+        int currentTime = 0;
+        while (!processes.isEmpty()) {
+            List<ProcessPriorityNP> availableProcesses = new ArrayList<>();
+            for (ProcessPriorityNP p : processes) {
+                if (p.arrivalTime <= currentTime) {
+                    availableProcesses.add(p);
+                }
+            }
+
+            availableProcesses.sort(Comparator.comparingInt(p -> p.priority));
+
+            if (availableProcesses.isEmpty()) {
+                currentTime++;
+                continue;
+            }
+
+            ProcessPriorityNP nextProcess = availableProcesses.get(0);
+            processes.remove(nextProcess);
+
+            System.out.println("Process " + nextProcess.pid + " starts at " + currentTime);
+            currentTime += nextProcess.burstTime;
+            System.out.println("Process " + nextProcess.pid + " finishes at " + currentTime);
+        }
+    }
+}
