@@ -1,0 +1,31 @@
+# Define two numbers
+num1 = 10
+num2 = 5
+
+# Perform addition
+addition_result = num1 + num2
+print("Addition:", addition_result)  # Output: 15
+
+# Perform subtraction
+subtraction_result = num1 - num2
+print("Subtraction:", subtraction_result)  # Output: 5
+
+# Perform multiplication
+multiplication_result = num1 * num2
+print("Multiplication:", multiplication_result)  # Output: 50
+
+# Perform division
+division_result = num1 / num2
+print("Division:", division_result)  # Output: 2.0
+
+# Perform integer division
+integer_division_result = num1 // num2
+print("Integer Division:", integer_division_result)  # Output: 2
+
+# Perform modulus (remainder)
+modulus_result = num1 % num2
+print("Modulus:", modulus_result)  # Output: 0
+
+# Perform exponentiation (power)
+exponentiation_result = num1 ** num2
+print("Exponentiation:", exponentiation_result)  # Output: 100000
