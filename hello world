@@ -1,0 +1,13 @@
+print("Hello, world!")
+
+# This code defines a function that takes a name as input and returns a greeting
+def greet(name):
+  greeting = "Hello, " + name + "!"
+  return greeting
+
+# Calling the function with a name
+name = "Alice"
+message = greet(name)
+
+# Printing the returned greeting
+print(message)
