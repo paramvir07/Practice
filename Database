@@ -1,0 +1,115 @@
+create database database_class;
+
+show databases;
+
+use database_class;
+
+show tables;
+
+create table student_detail(
+student_id int,
+student_name varchar(40),
+address varchar(255) );
+
+select * from 
+student_detail;
+
+describe student_detail;
+
+insert into student_detail (student_id, student_name) values 
+(3,"Gurmandeep Kaur" );
+
+insert into student_detail values
+(9,"Manju","Patiala"),
+(10,"Shimona","Amritsar"),
+(11,"Pawan","Ambala"),
+(12,"Manpreet","Mohali"),
+(13,"Gurkirat","Amritsar");
+
+select student_id, address from student_detail;
+
+select * from student_detail where student_id<=4;
+
+select * from student_detail where
+student_id>4 and address = "CHD";
+
+select * from student_detail where 
+address = "Mohali" or student_name = "Harpreet Kaur";
+
+select * from student_detail where
+student_id>4 and address = "Mohali";
+
+select * from student_detail where not student_id <4 ;
+
+select * from student_detail where
+not (student_id >2 and address = "Mohali") or 
+(student_name = "Harman");
+
+select * from student_detail where 
+not(student_id>2 and address = "Mohali");
+
+select * from student_detail;
+
+select student_id as "Student ID", address as "Address"
+ from student_detail;
+ 
+select * from student_detail where 
+(address = 'Patiala' or address = 'Mohali' or address= 'CHD');
+
+select * from student_detail where address in
+ ("Patiala", "Mohali", "CHD");
+
+select * from student_detail where 
+student_id>=4 and student_id <= 9;
+
+select * from student_detail where 
+student_id between 4 and 9;
+
+select * from student_detail where
+(student_id between 1 and 5) or (student_id between 10 and 13);
+
+select * from student_detail where address  not in
+ ("Patiala", "Mohali", "CHD");
+ 
+Create table customers (
+customer_id int unique NOT NULL,
+customer_name varchar(40) not null,
+gender char(1) check (gender in ("M","F")),
+age tinyint check(age>7),
+city char(30) default("CHD")
+);
+
+DESCRIBE CUSTOMERS;
+
+insert into customers (customer_id,customer_name,gender,age,city) values
+(4,"Sachin","F",18,"Patiala");
+
+select * from customers;
+
+show tables;
+
+create table customer_detail (
+customer_id int Primary key,
+name varchar(40) not null,
+city varchar(50) default "Mohali",
+gender char(1) ,
+product int ,
+age int check(age>7) ,
+foreign key (product) references product_detail(product_id));
+
+insert into customer_detail values
+(1,"Harpreet","CHD","F",3,22);
+
+Select * from customer_detail;
+
+create table product_detail (
+product_id int primary key auto_increment,
+product_name varchar(50) unique,
+price int not null );
+
+insert into product_detail (product_name, price) values
+("Chocolate",250),("Candies",100),("Cookies",400);
+
+select * from product_detail;
+
+describe product_detail;
