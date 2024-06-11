@@ -1,0 +1,82 @@
+# if-else:
+
+# SYNTAX : 
+
+# if conditon :
+        # statement1
+        # statement2
+        # statement3
+        # statement4 .....
+# elif condition : 
+        # statement1
+        # statement2
+        # statement3
+        # statement4 .....
+# elif condition : 
+        # statement1
+        # statement2
+        # statement3
+        # statement4 .....
+# else : 
+        # statement1
+        # statement2
+        # statement3 .....
+
+# num1 = int(input("Enter first number : "))
+# num2 = int(input("Enter second number : "))
+
+# if num1>num2 : 
+#     print(f"{num1} is greater")
+# elif num1 == num2 :
+#     print(f"Both numbers are equal")
+# else:
+#     print(f"{num2} is greater")
+
+# ---------------------------------------------------------------------
+
+# Program to check whether the number is even or odd taking number as input
+
+# num = int(input("Enter any number : "))
+
+# if num%2 == 0 :
+#     print("Even number")
+# else : 
+#     print("Odd number")
+
+# ---------------------------------------------------------------------
+
+# Program to check whether the number/word is palindrome or not
+
+# LEVEL ---> LEVEL
+# MOM ---> MOM
+# 12321 ---> 12321
+# Level ---> leveL
+
+# Harpreet ---> teerpraH
+# 12345 ----> 54321
+
+# word = input("Enter any word/number : ").strip()
+
+# if word.lower() == word[ : :-1].lower():
+#     print(f"{word} is Palindrome")
+# else : 
+#     print(f"{word} is not a Palindrome")
+
+# a = 10
+
+# if a==10:
+#     print("a is 10")
+# elif a==10:
+#     print("ELIF STATEMENT")
+# else :
+#     print("a is not 10")
+
+# ----------------------------------------------------------------
+
+# Program to print grade of a student by taking marks of 4 subjects
+# calculate percentage according to marks : 
+# if percentage is higher than 90 ---> Grade A
+# if percentage is between 70 and 90 ---> Grade B
+# if percentage is between 50 and 70 ---> Grade C
+# if percentage is between 35 and 50 ---> Grade D
+# else ----> FAIL
