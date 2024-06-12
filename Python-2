@@ -1,0 +1,30 @@
+# Function to calculate attendance percentage
+def calculate_attendance_percentage(classes_held, classes_attended):
+    return (classes_attended / classes_held) * 100
+
+# Function to determine if the student is allowed to sit for the exam
+def is_allowed_to_sit(attendance_percentage, medical_cause):
+    if attendance_percentage >= 75 or medical_cause.lower() == 'y':
+        return True
+    else:
+        return False
+
+# Taking inputs from the user
+classes_held = int(input("Enter the number of classes held: "))
+classes_attended = int(input("Enter the number of classes attended: "))
+
+# Calculating attendance percentage
+attendance_percentage = calculate_attendance_percentage(classes_held, classes_attended)
+print(f"Percentage of classes attended: {attendance_percentage:.2f}%")
+
+# Checking if the student has a medical cause
+medical_cause = input("Do you have a medical cause? (Y/N): ")
+
+# Determining if the student is allowed to sit for the exam
+allowed_to_sit = is_allowed_to_sit(attendance_percentage, medical_cause)
+
+# Printing the result
+if allowed_to_sit:
+    print("The student is allowed to sit in the exam.")
+else:
+    print("The student is not allowed to sit in the exam.")
