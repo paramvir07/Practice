@@ -1,0 +1,30 @@
+# this is the way to print hello world
+print("Hello World")
+
+'''this
+is
+multi
+line
+comment'''
+
+# Variables :
+
+a=10     #int
+b= 19.5  #float
+c= "hello"  #str
+print(a)
+print(b)
+print("c")
+print(c)
+
+first_name = "Harpreet"
+
+# you can only use a alphabets (A-Z, a-z) , numbers (0-9) & underscore(_)
+# you can't use keyword as variable names
+# you can't use numbers at first position of variable name
+
+d="""hello world
+welcome to my python
+class"""
+
+print(d)
