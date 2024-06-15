@@ -1,0 +1,98 @@
+# For Loop:
+
+# print hello world 20 times : 
+
+# for i in range(5):
+#     print("Hello World")
+
+# for i in range(5):
+#     print(i)
+
+# for i in range(5,10):
+#     print(i)
+
+# for i in range(1,11,2):
+#     print(i)
+
+# ------------------------------------------------------------------
+# PROGRAM TO PRINT EVEN NUMBERS BETWEEN 1 AND 20  :
+
+# for i in range(2,21,2):
+#     print(i)
+
+# for i in range(1,21):
+#     if i%2==0:
+#         print(i)
+
+# ---------------------------------------------------------------------
+# PROGRAM TO PRINT EVEN NUMBERS BETWEEN A RANGE TAKING INPUT FROM USER
+
+# start = int(input("Enter starting range : "))
+# end = int(input("Enter ending range value : "))
+
+# for i in range(start,end+1):
+#     if i%2==0:
+#         print(i)
+
+# ---------------------------------------------------------------------
+
+# for loop in list : 
+
+# fruits = [ "apple","mango","banana","guava","kiwi","cherry","strawberry","black berry"]
+
+# sum = 0
+# for i in fruits:
+#     sum += 1
+
+# print(sum)
+
+# ---------------------------------------------------------------------
+# Program to calculate sum of all the numbers in the given list:
+
+# numbers = [53,75,42,67,48,58,10,22,1,65]
+
+# total = 0
+# for num in numbers:
+#     total += num
+
+# print(total)
+
+# ---------------------------------------------------------------------
+
+# FOR LOOP IN STRING : 
+
+# sentence = "Hello world"
+
+# for char in sentence:
+#     print(char)
+
+# ---------------------------------------------------------------------
+
+# Program to calculate total number of vowels in a string:
+
+# sentence = "Hello world. Welcome to Chandigarh"
+
+# vowel_count = 0
+# for char in sentence:
+#     if char.lower() in "aeiou":
+#         vowel_count +=1
+
+# print(vowel_count)
+
+# ---------------------------------------------------------------------
+
+# Program to calculate total number of vowels and consonents in a string:
+
+sentence = "Hello world. Welcome to Chandigarh"
+
+# ---------------------------------------------------------------------
+
+# Count numbers and alphabets in a string : 
+
+sentence = "H34ello 234 world 23 @how are you 1!"
+
+# ---------------------------------------------------------------------
+
+# Count fruit in which "e" occurs from the following list : 
+
+fruits = [ "apple","mango","banana","guava","kiwi","cherry","strawberry","black berry"]
