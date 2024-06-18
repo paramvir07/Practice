@@ -1,0 +1,191 @@
+-- Syntax : 
+
+CREATE DATABASE database_name;
+
+USE database_name;
+
+SHOW DATABASES;
+
+SHOW TABLES;
+
+-- syntax to create a table 
+
+CREATE TABLE table_name (
+column1_name datatype constraint,
+column2_name datatype constraint, 
+...................... );
+
+SELECT col1,col2,col3,.... FROM table_name;
+
+DESCRIBE table_name;
+
+-- insert single value:
+INSERT INTO table_name (col1, col2 ,....) values 
+(val1, val2 , val3,.......) ;
+
+-- insert multiple values : 
+
+INSERT INTO table_name (col1, col2 ,....) values 
+(val1, val2 , val3,.......),
+(val1,val2, val3 , ......), 
+(val1, val2 , val3,.......),
+(val1, val2 , val3,.......),
+.......................... ;
+
+-- to select data as per condition : 
+
+SELECT * FROM table_name WHERE condition;
+
+-- operators : 
+
+-- comparison operator :
+
+= -----> equality
+> -----> greater than
+< -----> less than
+>= ------> greater than or equal to
+<= ------> less than or equal to
+
+-- logical operators : 
+
+and -----> return true only when both conditions are true
+or  -----> return true when any one condition or both are true
+not -----> return false when condition is true, return true when 
+            condition is false
+
+-- in operator :
+
+syntax : 
+
+SELECT * FROM table_name where column_name IN ("val1", "val2", "val3",...);
+
+-- not in operator : 
+
+SELECT * FROM table_name where column_name  NOT IN ("val1", "val2", "val3",...);
+
+
+-- between operator : 
+
+Syntax: 
+
+SELECT * FROM table_name WHERE column_name BETWEEN val1 AND val2;
+
+-- CONSTRAINTS : 
+
+1) NOT NULL
+
+2) UNIQUE
+
+3) CHECK(condition)
+
+4) DEFAULT
+
+5) PRIMARY KEY:
+combination of not null and unique
+only one primary key exist in table
+
+6) FOREIGN KEY:
+it takes reference from primary key of another table
+it maintains referential intigrity
+condition : one attribute should be common
+
+syntax:
+
+FOREIGN KEY (column_name) REFERENCES 
+another_table_name (another_table_col_name)
+
+
+-- DDL COMMANDS: 
+DATA DEFINITION LANGUAGE
+Deals with structure
+
+1) Create
+2) Describe
+3) Use
+4) Alter ---> add, delete, modify a column
+syntax:
+i) add:
+ALTER TABLE table_name ADD column_name datatype;
+
+ii) delete:
+ALTER TABLE table_name DROP column column_name;
+
+iii) modify:
+ALTER TABLE table_name MODIFY COLUMN column_name datatype ;
+
+5) Drop:
+i) table:
+DROP TABLE table_name;
+
+ii)database:
+DROP DATABASE database_name;
+
+6) Rename:
+i)table : 
+RENAME TABLE old_table_name TO new_table_name;
+
+ii) column:
+ALTER TABLE table_name RENAME COLUMN old_column_name TO new_column_name;
+
+ALTER TABLE table_name CHANGE old_column_name new_column_name
+datatype constraint;
+
+7) Truncate ---> drop & create
+
+TRUNCATE TABLE table_name;
+
+-- DML COMMANDS:
+DATA MANIPULATION LANGUAGE
+Deals with data
+
+1) Insert
+
+2) Select
+
+3) Update
+UPDATE table_name 
+SET column1_name = value , column1_name = value .....
+WHERE condition;
+
+4) Delete
+
+DELETE FROM table_name WHERE condition;
+
+-- LIKE OPERATOR : 
+
+like operator is used to fetch data according to our given pattern
+
+wildcard operators : 
+
+%(percentage sign) ---> represent zero or multiple characters
+
+_ (underscore) ----> represent a single character 
+
+-- Joins : 
+
+1) inner join:
+Select col1,col2,col3.... from table1 INNER JOIN table2 
+ON table1.fk = table2.pk where condition;
+
+2) left join
+Select col1,col2,col3.... from table1 LEFT JOIN table2 
+ON table1.fk = table2.pk where condition;
+
+3) right join:
+Select col1,col2,col3.... from table1 RIGHT JOIN table2 
+ON table1.fk = table2.pk where condition;
+
+4) cross join:
+SELECT col1,col2... from table1 CROSS JOIN table2;
+
+-- SET OPERATIONS :
+
+1) Union:
+select col1,col2... from table1 UNION select col1,col2,.... from table2;
+
+2) Intersection
+select col1,col2... from table1 INERSECT select col1,col2,.... from table2;
+
+3) Union all
+
+select col1,col2... from table1 UNION ALL select col1,col2,.... from table2;
