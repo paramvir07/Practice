@@ -1,0 +1,221 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+public class BakeryApp {
+    private JFrame frame;
+    private JLabel titleLabel, totalAmountLabel, croissantLabel, muffinLabel, donutLabel;
+    private JTextField paymentField;
+    private JButton backButton, payButton, nextButton1, nextButton;
+    private double totalAmount = 0.0;
+    private List<String> itemsOrdered = new ArrayList<>();
+    private ImageIcon welcomeImage = new ImageIcon("C:\\Users\\singl\\OneDrive\\Desktop\\welcome_image.jpg");
+    private ImageIcon itemsImage = new ImageIcon("C:\\Users\\singl\\OneDrive\\Desktop\\items_image.jpg");
+    private ImageIcon paymentImage = new ImageIcon("C:\\Users\\singl\\OneDrive\\Desktop\\payment_image.jpg");
+    private ImageIcon croissantImage = new ImageIcon("C:\\Users\\singl\\OneDrive\\Desktop\\croissant_image.jpg");
+    private ImageIcon muffinImage = new ImageIcon("C:\\Users\\singl\\OneDrive\\Desktop\\muffin_image.jpg");
+    private ImageIcon donutImage = new ImageIcon("C:\\Users\\singl\\OneDrive\\Desktop\\donut_image.jpg");
+
+    public BakeryApp() {
+        initializeFrame();
+        createWelcomeScreen();
+    }
+
+    private void initializeFrame() {
+        frame = new JFrame("Bakery Application");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(550, 650);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null); // Center the frame
+    }
+
+    private void createWelcomeScreen() {
+        frame.getContentPane().removeAll();
+        frame.repaint();
+        frame.setContentPane(new JLabel(welcomeImage));
+
+        titleLabel = new JLabel("Welcome to the Bakery!");
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setBounds(150, 20, 300, 40);
+        titleLabel.setBackground(new Color(255, 255, 255, 128));
+        titleLabel.setOpaque(true);
+
+        nextButton1 = new JButton("Start Ordering");
+        nextButton1.setBounds(200, 130, 120, 30);
+        nextButton1.addActionListener(this::nextButton1Clicked);
+
+        frame.setLayout(null);
+        frame.add(titleLabel);
+        frame.add(nextButton1);
+
+        frame.setVisible(true);
+    }
+
+    private void createItemsScreen() {
+        frame.getContentPane().removeAll();
+        frame.repaint();
+
+        frame.setContentPane(new JLabel(itemsImage));
+
+        titleLabel = new JLabel("Select Items:");
+        titleLabel.setBounds(140, 20, 120, 20);
+
+        JCheckBox croissantCheckBox = new JCheckBox("Croissant - $2.50");
+        croissantCheckBox.setBounds(50, 60, 250, 20);
+        croissantCheckBox.addActionListener(e -> updateTotalAmount(croissantCheckBox.getText(), croissantCheckBox.isSelected()));
+
+        JCheckBox muffinCheckBox = new JCheckBox("Muffin - $1.75");
+        muffinCheckBox.setBounds(50, 90, 250, 20);
+        muffinCheckBox.addActionListener(e -> updateTotalAmount(muffinCheckBox.getText(), muffinCheckBox.isSelected()));
+
+        JCheckBox donutCheckBox = new JCheckBox("Donut - $1.25");
+        donutCheckBox.setBounds(50, 120, 250, 20);
+        donutCheckBox.addActionListener(e -> updateTotalAmount(donutCheckBox.getText(), donutCheckBox.isSelected()));
+
+        totalAmountLabel = new JLabel();
+        totalAmountLabel.setBounds(50, 150, 250, 20);
+
+        croissantLabel = new JLabel(croissantImage);
+        croissantLabel.setBounds(320, 50, 150, 150);
+
+        muffinLabel = new JLabel(muffinImage);
+        muffinLabel.setBounds(320, 200, 150, 150);
+
+        donutLabel = new JLabel(donutImage);
+        donutLabel.setBounds(320, 350, 150, 150);
+
+        backButton = new JButton("Back");
+        backButton.setBounds(50, 520, 100, 30);
+        backButton.addActionListener(this::backButtonClicked);
+
+        nextButton = new JButton("Continue");
+        nextButton.setBounds(200, 520, 100, 30);
+        nextButton.addActionListener(this::nextButtonClicked);
+
+        frame.setLayout(null);
+        frame.add(titleLabel);
+        frame.add(croissantCheckBox);
+        frame.add(muffinCheckBox);
+        frame.add(donutCheckBox);
+        frame.add(totalAmountLabel);
+        frame.add(croissantLabel);
+        frame.add(muffinLabel);
+        frame.add(donutLabel);
+        frame.add(backButton);
+        frame.add(nextButton);
+
+        frame.setVisible(true);
+    }
+
+    private void createPaymentScreen() {
+        frame.getContentPane().removeAll();
+        frame.repaint();
+
+        frame.setContentPane(new JLabel(paymentImage));
+
+        titleLabel = new JLabel("Enter Payment Amount:");
+        titleLabel.setBounds(120, 20, 160, 20);
+
+        totalAmountLabel.setBounds(40, 60, 250, 20);
+
+        JLabel paymentLabel = new JLabel("Payment:");
+        paymentLabel.setBounds(40, 100, 80, 20);
+
+        paymentField = new JTextField();
+        paymentField.setBounds(140, 100, 120, 20);
+
+        backButton = new JButton("Back");
+        backButton.setBounds(50, 140, 100, 30);
+        backButton.addActionListener(this::backButtonClicked);
+
+        payButton = new JButton("Pay");
+        payButton.setBounds(200, 140, 100, 30);
+        payButton.addActionListener(this::payButtonClicked);
+
+        frame.add(titleLabel);
+        frame.add(totalAmountLabel);
+        frame.add(paymentLabel);
+        frame.add(paymentField);
+        frame.add(backButton);
+        frame.add(payButton);
+
+        frame.setVisible(true);
+    }
+
+    private void updateTotalAmount(String item, boolean selected) {
+        if (selected) {
+            itemsOrdered.add(item);
+            if (item.contains("$")) {
+                String priceStr = item.substring(item.indexOf("$") + 1);
+                totalAmount += Double.parseDouble(priceStr);
+            }
+        } else {
+            itemsOrdered.remove(item);
+            if (item.contains("$")) {
+                String priceStr = item.substring(item.indexOf("$") + 1);
+                totalAmount -= Double.parseDouble(priceStr);
+            }
+        }
+        updateTotalAmountLabel();
+    }
+
+    private void updateTotalAmountLabel() {
+        totalAmountLabel.setText("Total Amount: $" + String.format("%.2f", totalAmount));
+    }
+
+    private void backButtonClicked(ActionEvent e) {
+        totalAmount = 0.0;
+        itemsOrdered.clear();
+        createItemsScreen();
+    }
+
+    private void payButtonClicked(ActionEvent e) {
+        try {
+            double paymentAmount = Double.parseDouble(paymentField.getText());
+            if (paymentAmount < totalAmount) {
+                JOptionPane.showMessageDialog(frame, "Insufficient Payment Amount", "Payment Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                double change = paymentAmount - totalAmount;
+                StringBuilder message = new StringBuilder(("Items Purchased:\n"));
+                for (String item : itemsOrdered) {
+                    message.append("- ").append(item).append("\n");
+                }
+                message.append("Payment Successful! Your change is: $").append(String.format("%.2f", change)).append("\n");
+                JOptionPane.showMessageDialog(frame, message.toString(), "Payment Success", JOptionPane.INFORMATION_MESSAGE);
+                storeOrderDetails();
+                System.exit(0);
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(frame, "Invalid Payment Amount", "Payment Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void storeOrderDetails() {
+        try (PrintWriter writer = new PrintWriter(new FileWriter("order_details.txt", true))) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(String.join(",", itemsOrdered));
+            sb.append(",");
+            sb.append(String.format("%.2f", totalAmount));
+            writer.println(sb.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void nextButton1Clicked(ActionEvent e) {
+        createItemsScreen();
+    }
+
+    private void nextButtonClicked(ActionEvent e) {
+        createPaymentScreen();
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(BakeryApp::new);
+    }
+}
