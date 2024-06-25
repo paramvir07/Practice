@@ -1,0 +1,99 @@
+# object oriented programming :
+# relate to real world entity
+# binds data and functionality in a single term
+# data is its properites/attributes
+# methods are its functionality
+
+# class  ---> blueprint of object
+# object  ---> are instances of class
+#             you can create multiple objects from single class
+
+# class Human:
+#     species = "Homo Sapiens"
+#     def speak(self):
+#         return "Hello I am a Human"
+    
+# ram = Human()
+# # print(type(ram))
+# print(ram.species)
+# print(ram.speak())
+
+# sham = Human()
+# print(sham.species)
+# print(sham.speak())
+
+# a = "hello"
+# print(type(a))
+
+# constructor : 
+# special inbuilt method represented by _init_()
+# constructor is automatically called when object is created
+# it is used to pass arguments through an object to set its properties
+
+# class Human:
+#     species = "Homo Sapiens"
+#     def _init_(self,name,age,gender):
+#         self.name = name
+#         self.age = age
+#         self.gender= gender
+
+#     def _str_(self):
+#         return f"""Name : {self.name}
+# Age : {self.age}
+# Gender : {self.gender}"""
+    
+#     def _len_(self):
+#         return 3
+
+#     def speak(self):
+#         return f"Hello, My name is {self.name}. I am {self.age} years old"
+
+# obj1 = Human("Ram",34,"Male")
+# print(obj1.name)
+# print(obj1.gender)
+# print(obj1.species)
+# print(obj1.speak())
+# print(obj1)
+# print(len(obj1))
+
+# obj2 = Human("Khushi",56,"Female")
+# print(obj2.name)
+# print(obj2.gender)
+# print(obj2.species)
+# print(obj2.speak())
+# print(obj2)
+# print(len(obj2))
+
+
+# INHERITANCE : 
+
+# single level inheritance :
+# parent class ----> child class
+
+# multi level inheritance
+# grandparent ----> parent ---> child
+
+# multiple inheritance
+# parent1, parent2, parent3, parent4 ----> child  
+
+# hierarchical inheritance
+# parent ---> child1, child2, child3, child4 ....
+
+class A :
+    def sum(self,num1,num2):
+        return num1 + num2
+    
+class B:
+    def sub(self, num1,num2):
+        return num1 - num2
+    
+class C(A,B):
+    def mul(self,num1,num2):
+        return num1 * num2
+    
+a1 = A()
+print(a1.sum(3,7))
+
+b1 = B()
+print(b1.sub(67,34))
+print(b1.sum(35,432))
