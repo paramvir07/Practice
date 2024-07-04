@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- SUBSTRING -->
+    <label>Enter a String:</label>
+    <input type="text" id="stringtext">
+    <label>Enter start index:</label>
+    <input type="number" id="numberstart">
+    <label>Enter end index:</label>
+    <input type="number" id="numberend">
+    <button id="button">Substring</button>
+    <div id="divv"></div>
+
+    <script>
+        document.getElementById("button").addEventListener("click", function() {
+            let originalString = document.getElementById("stringtext").value;
+            let start = parseInt(document.getElementById("numberstart").value);
+            let end = parseInt(document.getElementById("numberend").value);
+            let finalstring = originalString.substring(start, end);
+            document.getElementById("divv").innerHTML = "The answer is " + finalstring;
+        });
+    </script>
+</body>
+</html>
