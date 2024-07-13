@@ -1,0 +1,85 @@
+import java.util.Scanner;
+
+public class ArrayDeletion {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input the size of the array
+        System.out.println("Enter the size of the array:");
+        int size = scanner.nextInt();
+
+        // Input the elements of the array
+        int[] array = new int[size];
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < size; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        // Delete from the beginning
+        array = deleteFromBeginning(array);
+        System.out.println("Array after deletion from beginning:");
+        printArray(array);
+
+        // Delete from the end
+        array = deleteFromEnd(array);
+        System.out.println("Array after deletion from end:");
+        printArray(array);
+
+        // Input the position to delete from
+        System.out.println("Enter the position to delete from (0-based index):");
+        int position = scanner.nextInt();
+        array = deleteFromPosition(array, position);
+        System.out.println("Array after deletion from position " + position + ":");
+        printArray(array);
+    }
+
+    // Function to delete an element from the beginning of the array
+    public static int[] deleteFromBeginning(int[] array) {
+        if (array.length == 0) {
+            return array; // No elements to delete
+        }
+
+        int[] newArray = new int[array.length - 1];
+        for (int i = 1; i < array.length; i++) {
+            newArray[i - 1] = array[i];
+        }
+        return newArray;
+    }
+
+    // Function to delete an element from the end of the array
+    public static int[] deleteFromEnd(int[] array) {
+        if (array.length == 0) {
+            return array; // No elements to delete
+        }
+
+        int[] newArray = new int[array.length - 1];
+        for (int i = 0; i < array.length - 1; i++) {
+            newArray[i] = array[i];
+        }
+        return newArray;
+    }
+
+    // Function to delete an element from a specific position in the array
+    public static int[] deleteFromPosition(int[] array, int position) {
+        if (array.length == 0 || position < 0 || position >= array.length) {
+            return array; // Invalid position or no elements to delete
+        }
+
+        int[] newArray = new int[array.length - 1];
+        for (int i = 0, j = 0; i < array.length; i++) {
+            if (i != position) {
+                newArray[j++] = array[i];
+            }
+        }
+        return newArray;
+    }
+
+    // Function to print the elements of the array
+    public static void printArray(int[] array) {
+        for (int i : array) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+}
