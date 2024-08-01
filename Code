@@ -1,0 +1,68 @@
+import random
+
+class Cinema():
+    movies = ['Twisters','Deadpool','Bad News','Kalki']
+    screens = {
+        'Audi 1':list(range(1,41)),
+        'Audi 2':list(range(1,36)),
+        'Audi 3':list(range(1,48)),
+        'Audi 4':list(range(1,46))
+    }
+    filled_screens = {
+        'Audi 1':[],
+        'Audi 2':[],
+        'Audi 3':[],
+        'Audi 4':[]
+    }
+
+class MovieTicket(Cinema):
+    def _init_(self):
+        pass
+
+    def book_ticket(self):
+        print('Current Movie Shows: ')
+        count = 1
+        for movie in self.movies:
+            print(f'{count}. {movie}')
+            count += 1
+
+        self.user_movie = int(input('Which movie you want to book: '))
+        audis = list(self.screens.keys())
+        self.random_audi = random.choice(audis)
+        print(f'Screen : {self.random_audi}')
+        print('Available Seats :')
+        print(self.screens[self.random_audi])
+        self.user_seat = int(input('Which seat you want to book: '))
+
+        self.screens[self.random_audi].remove(self.user_seat)
+        self.filled_screens[self.random_audi].append(self.user_seat)
+
+        print('Your Movie Ticket Booked successfully.')
+        self.cancelled = False
+
+        print('Available Seats : ')
+        print(self.screens[self.random_audi])
+        print('Booked Seats : ')
+        print(self.filled_screens[self.random_audi])
+
+
+    def cancel_ticket(self):
+        if self.cancelled==False:
+            self.screens[self.random_audi].append(self.user_seat)
+            self.filled_screens[self.random_audi].remove(self.user_seat)
+            print('Your Movie Ticket Has Been Cancelled successfully.')
+            self.cancelled = True
+        else:
+            print('You have not ticket to cancel.')
+
+suman = MovieTicket()
+jasspreet = MovieTicket()
+nitin = MovieTicket()
+ballu = MovieTicket()
+
+suman.book_ticket()
+jasspreet.book_ticket()
+nitin.book_ticket()
+ballu.book_ticket()
+
+jasspreet.cancel_ticket()
